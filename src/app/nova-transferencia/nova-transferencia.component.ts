@@ -1,26 +1,31 @@
+import { TransferenciaService } from './../service/transferencia.service';
 import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
-    selector:'app-nova-transferencia',
-    templateUrl:'./nova-transferencia.component.html',
-    styleUrls:['./nova-transferencia.component.scss']
+  selector: 'app-nova-transferencia',
+  templateUrl: './nova-transferencia.component.html',
+  styleUrls: ['./nova-transferencia.component.scss']
 })
 
-export class NovaTransferenciaComponent{
-  valor : number = 0;
-  destino : number = 0;
+export class NovaTransferenciaComponent {
+  valor: number = 0;
+  destino: number = 0;
+
+  constructor(private service : TransferenciaService){
+
+  }
 
   @Output() onTransferir = new EventEmitter<any>();
 
- transferir(){
-  const valorTransferencia ={valor: this.valor, destino: this.destino}
-  this.onTransferir.emit(valorTransferencia);
-  this.clearCampos();
- }
+  transferir() {
+    const valorTransferencia = { valor: this.valor, destino: this.destino }
+    this.onTransferir.emit(valorTransferencia);
+    this.clearCampos();
+  }
 
- clearCampos(){
-  this.valor = 0;
-  this.destino = 0;
- }
+  clearCampos() {
+    this.valor = 0;
+    this.destino = 0;
+  }
 
 }

@@ -1,4 +1,18 @@
-<div *ngFor="let transferencia of transferencias">
-<p>Valor : {{this.transferencia?.valor}}</p>
-<p>Destinho : {{this.transferencia?.destino}}</p>
-</div>
+<table class="tabela">
+  <thead class="tabela__cabecalho">
+    <th class="tabela__cabecalho__conteudo">Data</th>
+    <th class="tabela__cabecalho__conteudo">Destino</th>
+    <th class="tabela__cabecalho__clistaTransferenciaonteudo">Valor</th>
+  </thead>
+<tbody *ngIf="!!transferencias; else listaVazia ">
+   <tr class="tabela__linha" *ngFor="let transf of transferencias">
+    <td class="tabela__conteudo">{{transf.data | date : "short"}}</td>
+    <td class="tabela__conteudo">{{transf.destino}}</td>
+    <td class="tabela__conteudo">{{transf.valor |  currency}}</td>
+   </tr>
+</tbody>
+</table>
+<ng-template  #listaVazia>
+  <p class="template__listaVazia">Nenhuma transferência encontrada.</p>
+</ng-template>
+
